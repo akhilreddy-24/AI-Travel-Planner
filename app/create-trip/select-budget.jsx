@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity, ToastAndroid } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, ToastAndroid, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigation, useRouter } from 'expo-router'
 import { SelectBudgetOptions } from '../../constants/Options';
@@ -38,7 +38,7 @@ export default function SelectBudget() {
     };
 
   return (
-      <View style={{
+      <ScrollView style={{
         padding: 25,
         paddingTop: 85,
         backgroundColor: Colors.WHITE,
@@ -91,6 +91,6 @@ export default function SelectBudget() {
             }}>Continue</Text>
           </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   )
 }

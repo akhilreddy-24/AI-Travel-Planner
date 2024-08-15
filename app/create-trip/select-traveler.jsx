@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity, ToastAndroid } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, ToastAndroid, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigation } from 'expo-router'
 import { Colors } from '../../constants/Colors';
@@ -35,7 +35,7 @@ export default function SelectTraveler() {
   };
 
   return (
-    <View style={{
+    <ScrollView style={{
       padding: 25,
       paddingTop: 85,
       backgroundColor: Colors.WHITE,
@@ -85,6 +85,6 @@ export default function SelectTraveler() {
           fontSize: 20
         }}>Continue</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
