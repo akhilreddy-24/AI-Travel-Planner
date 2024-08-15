@@ -4,7 +4,7 @@
     "slug": "ai-travel-planner-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/Airplane_logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -16,10 +16,15 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/Airplane_logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.akhilreddy_215.aitravelplannerapp"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +36,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d890f626-1457-4447-96c6-b2da71316864"
+      }
     }
   }
 }

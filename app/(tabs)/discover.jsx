@@ -5,7 +5,6 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { CreateTripContext } from '../../context/CreateTripContext';
 
 export default function Discover() {
-  const API_KEY = process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY;
   const { tripData, setTripData } = useContext(CreateTripContext);
 
   const [region, setRegion] = useState({
@@ -49,17 +48,21 @@ export default function Discover() {
           placeholder='Search Place'
           fetchDetails={true}
           onPress={(data, details = null) => {
-            setTripData({
-              locationInfo: {
-                name: data.description,
-                coordinates: details?.geometry.location,
-                photoRef: details?.photos[0]?.photo_reference,
-                url: details?.url,
-              },
-            });
+            try {
+              setTripData({
+                locationInfo: {
+                  name: data.description,
+                  coordinates: details?.geometry.location,
+                  photoRef: details?.photos[0]?.photo_reference,
+                  url: details?.url,
+                },
+              });
+            } catch (error) {
+              console.error('Error setting trip data:', error);
+            }
           }}
           query={{
-            key: API_KEY,
+            key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
             language: 'en',
           }}
           styles={{
@@ -67,6 +70,7 @@ export default function Discover() {
               borderWidth: 1,
               borderRadius: 5,
               marginTop: 25,
+              height:47
             },
             textInput: {
               height: 40,
@@ -74,6 +78,7 @@ export default function Discover() {
               borderWidth: 1,
               borderRadius: 5,
               paddingHorizontal: 10,
+              height:45
             },
           }}
         />
@@ -81,10 +86,9 @@ export default function Discover() {
       <MapView
         style={styles.map}
         region={region}
-        onRegionChangeComplete={setRegion}
+        onRegionChangeComplete={(region) => setRegion(region)}
         showsUserLocation={true}
         showsCompass={true}
-        zoomControlEnabled={true}
       >
         {markers.map((marker) => (
           <Marker
@@ -107,6 +111,8 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     height: '100%',
     width: '100%',
+    marginTop: 40,
+    marginBottom: 30,
   },
   searchContainer: {
     position: 'absolute',
