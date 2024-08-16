@@ -35,7 +35,7 @@ export default function SelectTraveler() {
   };
 
   return (
-    <ScrollView style={{
+    <View style={{
       padding: 25,
       paddingTop: 85,
       backgroundColor: Colors.WHITE,
@@ -85,6 +85,6 @@ export default function SelectTraveler() {
           fontSize: 20
         }}>Continue</Text>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
 }

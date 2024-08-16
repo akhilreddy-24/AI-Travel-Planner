@@ -22,7 +22,7 @@ export default function ReviewTrip() {
     }, [])
 
   return (
-      <ScrollView style={{
+      <View style={{
           padding: 25,
           paddingTop: 85,
           backgroundColor: Colors.WHITE,
@@ -160,6 +160,6 @@ export default function ReviewTrip() {
             }}>Build My trip   ✨</Text>
           </TouchableOpacity>
           </View>
-    </ScrollView>
+    </View>
   )
 }

@@ -1,132 +1,56 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { CreateTripContext } from '../../context/CreateTripContext';
+import React from 'react';
+import { SafeAreaView, StyleSheet, View, Text, TouchableOpacity, Linking } from 'react-native';
 
 export default function Discover() {
-  const API_KEY = process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY;
-  const { tripData, setTripData } = useContext(CreateTripContext);
-
-  const [region, setRegion] = useState({
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  });
-
-  const [markers, setMarkers] = useState([
-    {
-      id: 1,
-      title: 'Golden Gate Bridge',
-      description: 'Famous bridge in San Francisco',
-      latitude: 37.8199,
-      longitude: -122.4783,
-    },
-    {
-      id: 2,
-      title: 'Alcatraz Island',
-      description: 'Historical site in San Francisco Bay',
-      latitude: 37.8267,
-      longitude: -122.4230,
-    },
-  ]);
-
-  useEffect(() => {
-    console.log("Trip Data:", tripData);
-    if (tripData?.locationInfo?.coordinates) {
-      setRegion({
-        ...region,
-        latitude: tripData.locationInfo.coordinates.lat,
-        longitude: tripData.locationInfo.coordinates.lng,
-      });
-    }
-  }, [tripData]);
-
-  const handleError = (error) => {
-    console.error('An error occurred:', error);
+  const handleGoToMaps = () => {
+    const url = 'https://www.google.com/maps';
+    Linking.openURL(url).catch((err) => console.error('An error occurred while opening Google Maps:', err));
   };
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.searchContainer}>
-
-<GooglePlacesAutocomplete
-  placeholder='Search Place'
-  fetchDetails={true}
-  onPress={(data, details = null) => {
-    try {
-      setTripData({
-        locationInfo: {
-          name: data.description,
-          coordinates: details?.geometry.location,
-          photoRef: details?.photos[0]?.photo_reference,
-          url: details?.url,
-        },
-      });
-    } catch (error) {
-      handleError(error);
-    }
-  }}
-  query={{
-    key: API_KEY,
-    language: 'en',
-  }}
-  styles={{
-    textInputContainer: {
-      borderWidth: 1,
-      borderRadius: 5,
-      marginTop: 25,
-    },
-    textInput: {
-      height: 40,
-      borderColor: '#ddd',
-      borderWidth: 1,
-      borderRadius: 5,
-      paddingHorizontal: 10,
-    },
-  }}
-/>
-
+      <View style={styles.headerContainer}>
+        <Text style={styles.title}>Discover</Text>
+        <Text style={styles.description}>
+          You can use this page to navigate to Google Maps for exploring places.
+        </Text>
       </View>
-      <MapView
-        style={styles.map}
-        region={region}
-        onRegionChangeComplete={setRegion}
-        showsUserLocation={true}
-        showsCompass={true}
-        zoomControlEnabled={true}
-      >
-        {markers.map((marker) => (
-          <Marker
-            key={marker.id}
-            coordinate={{
-              latitude: marker.latitude,
-              longitude: marker.longitude,
-            }}
-            title={marker.title}
-            description={marker.description}
-          />
-        ))}
-      </MapView>
+      <TouchableOpacity style={styles.button} onPress={handleGoToMaps}>
+        <Text style={styles.buttonText}>Go to Maps</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject,
-    height: '100%',
-    width: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
-  searchContainer: {
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    right: 10,
-    zIndex: 1,
-    marginTop: 70,
+  headerContainer: {
+    marginBottom: 20,
   },
-  map: {
-    ...StyleSheet.absoluteFillObject,
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  description: {
+    fontSize: 16,
+    color: '#555',
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#1E90FF',
+    padding: 15,
+    borderRadius: 5,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#fff',
+    textAlign: 'center',
   },
 });

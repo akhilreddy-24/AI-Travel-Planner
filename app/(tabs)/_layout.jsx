@@ -2,7 +2,6 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
 import Ionicons from '@expo/vector-icons/Ionicons';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Colors } from '../../constants/Colors';
 
@@ -21,7 +20,7 @@ export default function TabLayout() {
           <Tabs.Screen name="discover"
               options={{
                 tabBarLabel:'Discover',
-                tabBarIcon:({color})=><FontAwesome5 name="globe-americas" size={24} color="black" />
+                tabBarIcon:({color})=><FontAwesome name="globe" size={24} color="black" />
               }}
           />
           <Tabs.Screen name="profile"
