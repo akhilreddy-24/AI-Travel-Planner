@@ -25,12 +25,19 @@ export default function UserTripCard({ trip, onDelete }) {
     };
 
     return (
-        <View style={{ 
-            marginTop: 10,  // Reduced margin-top for intermediate trips
-            flexDirection: 'row', 
+        <View style={{
+            marginTop: 15,
+            marginBottom:25,
+            flexDirection: 'row',
             alignItems: 'center',
-            marginBottom: 20, // Keep margin-bottom to ensure space for the delete button
-            paddingBottom: 20 // Ensure padding at the bottom to avoid content being cut off
+            padding: 15,
+            backgroundColor: Colors.WHITE,
+            borderRadius: 5,
+            shadowColor: Colors.GRAY,
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.2,
+            shadowRadius: 2,
+            elevation: 5, // Adds shadow for Android
         }}>
             <Image
                 source={{

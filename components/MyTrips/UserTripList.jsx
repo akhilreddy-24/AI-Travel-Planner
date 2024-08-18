@@ -28,7 +28,7 @@ export default function UserTripList({ userTrips }) {
     };
 
     return (
-        <ScrollView>
+        <ScrollView >
             {/* Latest Trip */}
             <View style={{ marginTop: 20 }}>
 
