@@ -1,4 +1,5 @@
 AI Travel Planner
+
 AI Travel Planner is a cutting-edge mobile application designed to simplify the process of planning trips and exploring new destinations. The app leverages AI-driven recommendations to provide users with personalized travel suggestions based on their preferences, making it easier to discover, organize, and enjoy trips around the world.
 
 Features
@@ -28,7 +29,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/your-username/ai-travel-planner.git
+git clone https://github.com/akhilreddy-24/ai-travel-planner.git
 cd ai-travel-planner
 Install dependencies:
 
