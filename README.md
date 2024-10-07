@@ -29,8 +29,8 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/akhilreddy-24/ai-travel-planner.git
-cd ai-travel-planner
+git clone https://github.com/akhilreddy-24/Ai-Travel-Planner.git
+cd Ai-Travel-Planner
 Install dependencies:
 
 bash
